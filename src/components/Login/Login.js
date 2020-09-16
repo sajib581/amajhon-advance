@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
-import { createUserWithEmailAndPassword, signOutHandeler, handleFbSignin, handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword } from './LoginManager';
+import { createUserWithEmailAndPassword, signOutHandeler, handleFbSignin, handleGoogleSignIn, initializeLoginFramework, signInWithEmailAndPassword, restPassword } from './LoginManager';
 
 initializeLoginFramework()
 function Login() {
@@ -111,6 +111,7 @@ const signOut = () => {
         <input type="password" name="password" onBlur={handelBlur} placeholder="Enter password"></input> <br/>
         <input type="submit" value={newUser ? 'Signup' : 'SignIn'} onClick={submitHandeler} ></input>
       </form>
+      <button onClick={()=>restPassword(user.email)}>Forgot Password</button>
     <p style={{color: 'red'}}>{user.error}</p>
     {user.success && <p style={{color: 'green'}}>User {newUser ? 'Created' : 'Logged in'} Successfully</p>}
     </div>
